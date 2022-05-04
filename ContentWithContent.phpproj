@@ -1,6 +1,12 @@
 <Project Sdk="Devsense.Php.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>4d259ff9-db8d-4828-9b9d-1a0f5b1d3e8e</ProjectGuid>
+  </PropertyGroup>
   <PropertyGroup>
     <EnvName>PHPDev</EnvName>
     <RuntimeVersion>8.0</RuntimeVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="front-end\" />
+  </ItemGroup>
 </Project>
