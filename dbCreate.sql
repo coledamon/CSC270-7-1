@@ -28,7 +28,8 @@ create table if not exists Media(
     media_name		varchar(500),
     year			year,
     creator			varchar(100),
-    genre			varchar(200)
+    genre			varchar(200),
+    link			varchar(5000)
 );
 
 create table if not exists CategoryPage (
@@ -56,3 +57,5 @@ insert into Category(category_name) values('Book');
 insert into Category(category_name) values('Movie');
 insert into Category(category_name) values('Game');
 insert into Category(category_name) values('Video Game');
+insert into Category(category_name) values('Magazine');
+insert into Category(category_name) values('Song');
