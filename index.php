@@ -1,3 +1,4 @@
 ﻿<?php
 
-echo 'Hello World!';
+include 'Front-End/landingPage.php';
+
