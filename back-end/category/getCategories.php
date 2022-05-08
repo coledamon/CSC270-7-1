@@ -1,3 +1,26 @@
 <?php
+include_once "../dbUtils.php";
 
+header('Content-Type: application/json');
+
+$dbConn = ConnGet();
+
+function getCategories($dbConn) {
+
+    $query = "SELECT JSON_OBJECT(
+                'id', c.id,
+                'Name', c.category_name,
+                'Used', c.used,
+                'Title', cp.title,
+                'Body', cp.body) as Category
+                FROM Category c
+                JOIN CategoryPage cp
+                    ON cp.category_id = c.id;";
+
+    return @mysqli_query($dbConn, $query);
+}
+$json = formatRecords(getCategories($dbConn));
+connClose($dbConn);
+
+echo $json;
 ?>

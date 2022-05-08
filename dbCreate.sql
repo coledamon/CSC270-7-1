@@ -9,7 +9,7 @@ FLUSH PRIVILEGES;
 create table if not exists Users (
 	primary key(id),
     id				int				not null	auto_increment,
-	username		varchar(100)	not null,
+	username		varchar(100)	not null	unique,
 	password_hash	varchar(100)	not null
 );
 
@@ -25,7 +25,7 @@ create table if not exists Media(
     foreign key(category_id) references Category(id) on delete cascade,
     id				int		not null	auto_increment,
     category_id		int		not null,
-    media_name		varchar(500),
+    media_name		varchar(500) not null,
     year			year,
     creator			varchar(100),
     genre			varchar(200),
@@ -34,22 +34,20 @@ create table if not exists Media(
 
 create table if not exists CategoryPage (
 	primary key(id),
-    foreign key(category_id) references Category(id),
+    foreign key(category_id) references Category(id) on delete cascade,
 	id				int				not null	auto_increment,
     category_id		int				not null	unique,
     title			varchar(50),
-    heading			varchar(200),
     body			varchar(5000)
 );
 
 create table if not exists MediaPage (
 	primary key(id),
-    foreign key(category_page_id) references CategoryPage(id) on delete cascade,
     foreign key(media_id) references Media(id) on delete cascade,
     id					int				not null	auto_increment,
-    category_page_id	int				not null,
     media_id			int				not null,
     title				varchar(50),
+    heading				varchar(200),
     body				varchar(5000)
 );
 
