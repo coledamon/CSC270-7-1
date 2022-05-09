@@ -13,6 +13,7 @@ $test = "Hello world! This is the Landing Page";
 </head>
 <header>
     <?php include 'header.php' ?>
+    
 </header>
 <body>
     

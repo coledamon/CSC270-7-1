@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,10 @@
     <!-- <title>Document</title> -->
 </head>
 <header class="header-container">
-    <p>test</p>
+    <div class="nav-bar">
+        <h1>Content Library</h1>
+        <a class="nav-login-button" href="adminLogin.php" >Login</a>
+    </div>
 </header>
+
 </html>
