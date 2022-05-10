@@ -15,7 +15,7 @@ function getCategoryByName($dbConn, $name) {
                 FROM Category c
                 JOIN CategoryPage cp
                     ON cp.category_id = c.id
-                WHERE c.category_name = ".$name.";";
+                WHERE c.category_name = \"".$name."\";";
     $result = @mysqli_query($dbConn, $query);
     return $result? $result : @mysqli_error($dbConn);
 }
