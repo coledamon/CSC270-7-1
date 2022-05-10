@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 $dbConn = ConnGet();
 
-function getCategoryByUse($dbConn, $use) {
+function getCategoriesByUse($dbConn, $use) {
     $query = "SELECT JSON_OBJECT(
                 'id', c.id,
                 'Name', c.category_name,
@@ -21,7 +21,7 @@ function getCategoryByUse($dbConn, $use) {
 }
 if(isset($_GET["use"]) && $_GET["use"]) {
     $use = sanitizeInput($_GET["use"]);
-    $json = formatRecords(getCategoryByUse($dbConn, $use));
+    $json = formatRecords(getCategoriesByUse($dbConn, $use));
     if($json == "null") {
         echo json_encode(json_decode('{"error": "Invalid Use State"}'));
     }

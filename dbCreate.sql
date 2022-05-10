@@ -57,3 +57,17 @@ insert into Category(category_name) values('Game');
 insert into Category(category_name) values('Video Game');
 insert into Category(category_name) values('Magazine');
 insert into Category(category_name) values('Song');
+
+insert into CategoryPage(category_id, title, body) values (1, "Books", "This is a page that contains all of my books");
+insert into CategoryPage(category_id, title, body) values (2, "Movies", "This is a page that contains all of my movies");
+insert into CategoryPage(category_id, title, body) values (4, "Video Games", "This is a page that contains all of my video games");
+update Category set used = true where id in (1,2,4);
+
+insert into Media(category_id, media_name, year, creator, genre) values(1, "Scythe", 2016, "Neal Shusterman", "Dystopian");
+insert into MediaPage(media_id, title, heading, body) values (last_insert_id(), "Scythe", "Scythe", "My favorite book");
+insert into Media(category_id, media_name, year, creator, genre) values(1, "Thunderhead", 2018, "Neal Shusterman", "Dystopian");
+insert into MediaPage(media_id, title, heading, body) values (last_insert_id(), "Thunderhead", "Thunderhead", "Part of my favorite book series");
+insert into Media(category_id, media_name, year, creator, genre) values(1, "The Toll", 2019, "Neal Shusterman", "Dystopian");
+insert into MediaPage(media_id, title, heading, body) values (last_insert_id(), "The Toll", "The Toll", "Part of my favorite book series");
+insert into Media(category_id, media_name, year, creator, genre) values(4, "Minecraft", 2011, "Mojang", "Sandbox");
+insert into MediaPage(media_id, title, heading, body) values (last_insert_id(), "Minecraft", "Minecraft", "A great game");
