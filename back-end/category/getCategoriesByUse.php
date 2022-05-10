@@ -9,9 +9,7 @@ function getCategoriesByUse($dbConn, $use) {
     $query = "SELECT JSON_OBJECT(
                 'id', c.id,
                 'Name', c.category_name,
-                'Used', c.used,
-                'Title', cp.title,
-                'Body', cp.body) as Category
+                'Used',  If(c.used, cast(true as json), cast(false as json))) as Category
                 FROM Category c
                 WHERE c.used = ".$use.";";
     $result = @mysqli_query($dbConn, $query);
