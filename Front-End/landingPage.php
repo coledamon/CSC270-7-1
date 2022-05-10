@@ -25,6 +25,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 <script>
+
     const getCategories = () => {
         fetch("../back-end/category/getCategories.php")
             .then(res => res.json())
@@ -33,4 +34,5 @@
             });
     }
     console.log(getCategories());
+    
 </script>
