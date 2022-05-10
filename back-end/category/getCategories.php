@@ -13,9 +13,7 @@ function getCategories($dbConn) {
                 'Used', c.used,
                 'Title', cp.title,
                 'Body', cp.body) as Category
-                FROM Category c
-                JOIN CategoryPage cp
-                    ON cp.category_id = c.id;";
+                FROM Category c";
 
     return @mysqli_query($dbConn, $query);
 }

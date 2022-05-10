@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 $dbConn = ConnGet();
 
 function useCategory($dbConn, $id) {
-    $query = "UPDATE Media
+    $query = "UPDATE Category
                     SET used = 1
                     WHERE id =".$id;
     $result = @mysqli_query($dbConn, $query);
