@@ -13,8 +13,6 @@ function getCategoriesByUse($dbConn, $use) {
                 'Title', cp.title,
                 'Body', cp.body) as Category
                 FROM Category c
-                JOIN CategoryPage cp
-                    ON cp.category_id = c.id
                 WHERE c.used = ".$use.";";
     $result = @mysqli_query($dbConn, $query);
     return $result? $result : @mysqli_error($dbConn);
