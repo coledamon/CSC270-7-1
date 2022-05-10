@@ -1,4 +1,4 @@
 <?php
 
-include 'back-end/category/getCategories.php';
+include 'Front-End/landingPage.php';
 

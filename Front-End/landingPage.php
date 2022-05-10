@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Front-End/reset.css">
+    <link rel="stylesheet" href="Front-End/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>Media Library</title>
 </head>
@@ -15,8 +16,8 @@
 </header>
 
 <body>
-    <div class="category-container">
-        <p id="category"></p>
+    <div class="d-flex">
+        <div id="wrapper" class="row justify-content-center m-4"></div>
     </div>
 </body>
 
@@ -25,14 +26,41 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 <script>
+    // const categoryName = document.getElementById('categoryName');
 
     const getCategories = () => {
         fetch("../back-end/category/getCategories.php")
             .then(res => res.json())
             .then(data => {
-                Console.log(data)
+                console.log(data)
+                displayCategories(data);
+                // data.forEach(category => {
+                //     console.log(category);
+                // });
             });
     }
-    console.log(getCategories());
-    
+
+    getCategories();
+
+    const displayCategories = (categories) => {
+        const wrapper = document.getElementById('wrapper');
+        categories.forEach(category => {
+            const categoryDiv = createCategory(category.Name);
+            wrapper.append(categoryDiv);
+        })
+    }
+
+    const createCategory = (categoryName) => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.classList.add('col-md-4.5');
+        categoryDiv.classList.add('m-4');
+        // categoryDiv.classList.add('align-content-center');
+        categoryDiv.classList.add('category-btn');
+        const h3 = document.createElement('h3');
+        h3.textContent = categoryName;
+        categoryDiv.append(h3);
+        console.log(h3.textContent + " create");
+
+        return categoryDiv;
+    }
 </script>

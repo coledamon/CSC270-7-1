@@ -1,0 +1,16 @@
+.category-btn {
+    background-color: #d33809;
+    padding: 5px 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 5px;
+    color: #faebd7;
+    border: 3px solid #000;
+}
+
+.category-btn:hover {
+    border: 3px solid #d33809;
+    background-color: #f5f5dc;
+    color: #000;
+    cursor: pointer;
+}
