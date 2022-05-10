@@ -10,7 +10,7 @@ function updateMedia($dbConn, $id, $name, $year, $creator, $genre, $link) {
                     SET ";
     $queryWhere=  " WHERE id=".$id;
     $queryUpdate .= ($name != null) ? "media_name=\"".$name."\", " : "";
-    $queryUpdate .= ($year != null) ? "year=\"".$year."\", " : "";
+    $queryUpdate .= ($year != null) ? "year=".$year.", " : "";
     $queryUpdate .= ($creator != null) ? "creator=\"".$creator."\", " : "";
     $queryUpdate .= ($genre != null) ? "genre=\"".$genre."\", " : "";
     $queryUpdate .= ($link != null) ? "link=\"".$link."\", " : "";
