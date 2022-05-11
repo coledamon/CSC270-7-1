@@ -11,7 +11,7 @@ function getUserByUsername($dbConn, $username) {
                 'Username', u.username,
                 'PasswordHash', u.password_hash) as User
                 FROM Users u
-                WHERE u.username = ".$username.";";
+                WHERE u.username = \"".$username."\";";
     $result = @mysqli_query($dbConn, $query);
     return $result? $result : @mysqli_error($dbConn);
 }

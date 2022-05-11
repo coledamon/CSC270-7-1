@@ -41,7 +41,7 @@ function createMediaPage($dbConn, $media_id, $title, $heading, $body) {
                     \"".$media_id."\"";
     if($title != null) {
         $queryInsert .= ", title";
-        $queryValues .= ", ".$title;
+        $queryValues .= ", \"".$title."\"";
     }
     if($heading!= null) {
         $queryInsert .= ", heading";

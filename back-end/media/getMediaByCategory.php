@@ -21,7 +21,7 @@ function getMediaByCategory($dbConn, $name) {
                     ON m.category_id = c.id
                 JOIN MediaPage mp
                     ON mp.media_id = m.id
-                WHERE c.category_name = ".$name.";";
+                WHERE c.category_name = \"".$name."\";";
     $result = @mysqli_query($dbConn, $query);
     return $result? $result : @mysqli_error($dbConn);
 }
