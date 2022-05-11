@@ -17,7 +17,7 @@ function getMediaById($dbConn, $id) {
                 'Heading', mp.heading,
                 'Body', mp.body) as Media
                 FROM Media m
-                JOIN MediaPage mp 
+                LEFT JOIN MediaPage mp 
                     ON mp.media_id = m.id
                 WHERE m.id = ".$id.";";
     $result = @mysqli_query($dbConn, $query);
