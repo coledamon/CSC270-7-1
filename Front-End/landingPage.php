@@ -51,16 +51,24 @@
     }
 
     const createCategory = (categoryName) => {
+        const clickCategory = document.createElement('a');
+        clickCategory.setAttribute('href', `Front-End/categoryPage.php?cat=${categoryName}`);
+        clickCategory.classList.add('category-btn');
+        clickCategory.classList.add('col-md-4.5');
+        clickCategory.classList.add('m-4');
+
         const categoryDiv = document.createElement('div');
-        categoryDiv.classList.add('col-md-4.5');
-        categoryDiv.classList.add('m-4');
+        categoryDiv.setAttribute('id', categoryName);
         // categoryDiv.classList.add('align-content-center');
-        categoryDiv.classList.add('category-btn');
+
         const h3 = document.createElement('h3');
         h3.textContent = categoryName;
         categoryDiv.append(h3);
+        clickCategory.append(categoryDiv);
         console.log(h3.textContent + " create");
+        
 
-        return categoryDiv;
+        return clickCategory;
     }
+
 </script>
