@@ -15,6 +15,8 @@
 </header>
 
 <body>
+    <h2 class="title text-center">Categories</h2>
+
     <div class="d-flex">
         <div id="wrapper" class="row justify-content-center m-4"></div>
     </div>

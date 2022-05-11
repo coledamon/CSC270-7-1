@@ -24,7 +24,7 @@ $title = $_GET['cat'] . " Category";
 </header>
 
 <body>
-    <h2>
+    <h2 class="title text-center">
         <?php echo $name ?>
     </h2>
 
@@ -64,26 +64,35 @@ $title = $_GET['cat'] . " Category";
     const displayMedia = (media) => {
         const wrapper = document.getElementById('wrapper');
         media.forEach(media => {
-            const mediaDiv = createMediaCard(media.Title, media.Year, media.Link, media.id);
+            const mediaDiv = createMediaCard(media.Title, media.Creator, media.Genre, media.Year, media.Link, media.id);
             wrapper.append(mediaDiv);
         })
     }
 
-    const createMediaCard = (title, year, link, id) => {
+    const createMediaCard = (title, creator, genre, year, link, id) => {
         const clickMedia = document.createElement('a');
         clickMedia.setAttribute('href', `mediaPage.php?id=${id}`);
         clickMedia.classList.add('media-card');
 
+
         const mediaDiv = document.createElement('div');
         mediaDiv.setAttribute('id', id);
 
-        const movieTitle = document.createElement('h4');
-        movieTitle.textContent = title;
-        const movieYear = document.createElement('h4');
-        movieYear.textContent = `Released: ${year}`;
+        const mediaTitle = document.createElement('h4');
+        mediaTitle.textContent = title;
+        mediaTitle.classList.add('text-center');
+
+        const mediaCreator = document.createElement('h5');
+        mediaCreator.textContent = `Creator: ${creator}`;
+
+        const mediaGenre = document.createElement('h5');
+        mediaGenre.textContent = `Genre: ${genre}`;
+
+        const mediaYear = document.createElement('h5');
+        mediaYear.textContent = `Released: ${year}`;
 
 
-        mediaDiv.append(movieTitle, movieYear);
+        mediaDiv.append(mediaTitle, mediaCreator, mediaGenre, mediaYear);
         clickMedia.append(mediaDiv);
 
         return clickMedia;

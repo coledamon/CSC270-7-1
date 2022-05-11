@@ -20,5 +20,16 @@
 
 .media-card {
     border: 2px solid #000;
-    padding: 15px 15px;
+    border-radius: 5px;
+    padding: 20px 25px;
+    text-decoration: none;
+    color: #000;
+}
+
+.media-card:hover {
+    text-decoration: none;
+}
+
+.title {
+    margin-top: 25px;
 }
