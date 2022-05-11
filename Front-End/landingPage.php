@@ -29,8 +29,8 @@
 <script>
     // const categoryName = document.getElementById('categoryName');
 
-    const getCategories = () => {
-        fetch("../back-end/category/getCategories.php")
+    const getCategoriesByUse = () => {
+        fetch("../back-end/category/getCategoriesByUse.php?use=true")
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -41,7 +41,29 @@
             });
     }
 
-    getCategories();
+    const createCategoryPage = () => {
+        fetch("../back-end/category/createCategoryPage.php", {
+            body: new URLSearchParams(new FormData(document.getElementById("createCategoryPageForm"))).toString(),
+            headers: {
+                 "Content-Type": "application/x-www-form-urlencoded",
+            },
+            method: "post"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+    }
+
+    const stopUseCategory = (id) => {
+        fetch(`../back-end/category/stopUseCategory.php?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+    }
+
+    getCategoriesByUse();
 
     const displayCategories = (categories) => {
         const wrapper = document.getElementById('wrapper');

@@ -9,7 +9,7 @@ function getCategoryByName($dbConn, $name) {
     $query = "SELECT JSON_OBJECT(
                 'id', c.id,
                 'Name', c.category_name,
-                'Used',  If(c.used, cast(true as json), cast(false as json)),
+                'Used', If(c.used, cast(true as json), cast(false as json)),
                 'Title', cp.title,
                 'Body', cp.body) as Category
                 FROM Category c

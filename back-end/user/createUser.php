@@ -16,9 +16,10 @@ function createUser($dbConn, $username, $hashPass) {
     return $result? $result : @mysqli_error($dbConn);
 }
 
-if(isset($_POST["username"]) && isset($_POST["hashPass"]) && $_POST["username"] && $_POST["hashPass"]) {
+if(isset($_POST["username"]) && isset($_POST["password"]) && $_POST["username"] && $_POST["password"]) {
     $username = sanitizeInput($_POST["username"]);
-    $hashPass = sanitizeInput($_POST["hashPass"]);
+    $password= sanitizeInput($_POST["password"]);
+    $hashPass = password_hash($password, PASSWORD_DEFAULT);
 
     $result = createUser($dbConn, $username, $hashPass);
     if($result != 1) {

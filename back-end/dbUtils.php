@@ -34,9 +34,14 @@ function formatRecords($result) {
         while($row = mysqli_fetch_array($result)) {
             $rowarray[] = json_decode($row[0]);
         }
-        $myjson = json_encode($rowarray);
+        $myjson = (isset($rowarray) && sizeof($rowarray) == 1) ? json_encode($rowarray[0]) : json_encode($rowarray);
+        if($myjson == "null") {
+            return json_encode(json_decode('{"error": "No records found"}'));
+        }
     }
-
+    else {
+        return json_encode(json_decode('{"error": "No records found"}'));
+    }
     return $myjson;
 }
 

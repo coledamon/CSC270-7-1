@@ -6,6 +6,8 @@ header('Content-Type: application/json');
 $dbConn = ConnGet();
 
 function useCategory($dbConn, $id) {
+    @mysqli_query($dbConn, "Delete CategoryPage where category_id = ".$id);
+    @mysqli_query($dbConn, "Delete Media where category_id = ".$id);
     $query = "UPDATE Category
                     SET used = 0
                     WHERE id =".$id;
