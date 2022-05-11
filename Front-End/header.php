@@ -11,10 +11,10 @@
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark justify-content-between">
-  <a class="navbar-brand" href="landingPage.php">Media Library</a>
+  <a class="navbar-brand" href="/">Media Library</a>
   <form class="form-inline">
     <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-    <a class="btn btn-success my-2 my-sm-0" href="Front-End/adminLogin.php">Login</a>
+    <a class="btn btn-success my-2 my-sm-0" href="./adminLogin.php">Login</a>
   </form>
 </nav>
 </body>

@@ -19,7 +19,7 @@ function getMediaByCategory($dbConn, $name) {
                 FROM Media m
                 JOIN Category c
                     ON m.category_id = c.id
-                JOIN MediaPage mp
+                LEFT JOIN MediaPage mp
                     ON mp.media_id = m.id
                 WHERE c.category_name = \"".$name."\";";
     $result = @mysqli_query($dbConn, $query);
