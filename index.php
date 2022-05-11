@@ -1,4 +1,4 @@
 <?php
-
-include 'Front-End/landingPage.php';
-
+header("Location: ./front-end");
+exit;
+?>

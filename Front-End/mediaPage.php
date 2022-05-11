@@ -22,7 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script>
     const getMediaById = (id) => {
-         fetch(`../back-end/media/getMediaById.php?id=${id}`)
+            fetch(`../back-end/media/getMediaById.php?id=${id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -33,7 +33,7 @@
         fetch("../back-end/media/updateMedia.php", {
             body: new URLSearchParams(new FormData(document.getElementById("updateMediaForm"))).toString(),
             headers: {
-                 "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Type": "application/x-www-form-urlencoded",
             },
             method: "post"
         })

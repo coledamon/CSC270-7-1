@@ -35,32 +35,66 @@ $title = $_GET['cat'] . " Category";
 
 </html>
 
+<!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
 <script>
-    let name = '<?php echo $name; ?>';
-
-    const getCategoryByName = async () => {
-
-        await fetch(`../back-end/category/getCategoryByName.php?name=${name}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                getMediaById(data[0].id);
-            });
+    const getCategoryPage = async () => {
+        await fetch(`../back-end/category/getCategoryByName.php?name=<?php echo $_GET["name"] ?>`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            //take the data and display title && body && use name for header
+        });
     }
 
-    const getMediaById = async (id) => {
-        await fetch(`../back-end/media/getMediaById.php?id=${id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                displayMedia(data);
-            });
+    const getCategoryMedia = async () => {
+        await fetch(`../back-end/media/getMediaByCategory.php?name=<?php echo $_GET["name"] ?>`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            displayMedia(data);
+        });
     }
 
-    getCategoryByName();
+    getCategoryPage();
+    getCategoryMedia();
 
+    const updateCategoryPage = () => {
+        fetch("../back-end/category/updateCategoryPage.php", {
+            body: new URLSearchParams(new FormData(document.getElementById("updateCategoryPageForm"))).toString(),
+            headers: {
+                 "Content-Type": "application/x-www-form-urlencoded",
+            },
+            method: "post"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+    }
+
+    const createMedia = () => {
+        fetch("../back-end/media/createMedia.php", {
+            body: new URLSearchParams(new FormData(document.getElementById("createMediaForm"))).toString(),
+            headers: {
+                 "Content-Type": "application/x-www-form-urlencoded",
+            },
+            method: "post"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+    }
+
+    const deleteMedia = (id) => {
+        fetch(`../back-end/media/deleteMediaById.php?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        });
+    }
+    
     const displayMedia = (media) => {
         const wrapper = document.getElementById('wrapper');
         media.forEach(media => {
