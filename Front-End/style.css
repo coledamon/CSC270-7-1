@@ -6,11 +6,30 @@
     border-radius: 5px;
     color: #faebd7;
     border: 3px solid #000;
+    font-size: 21pt;
+    text-decoration: none;
 }
 
 .category-btn:hover {
     border: 3px solid #d33809;
     background-color: #f5f5dc;
     color: #000;
+    text-decoration: none;
     cursor: pointer;
+}
+
+.media-card {
+    border: 2px solid #000;
+    border-radius: 5px;
+    padding: 20px 25px;
+    text-decoration: none;
+    color: #000;
+}
+
+.media-card:hover {
+    text-decoration: none;
+}
+
+.title {
+    margin-top: 25px;
 }
