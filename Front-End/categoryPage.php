@@ -100,7 +100,7 @@ $title = $_GET['cat'] . " Category";
 </script>
 
  <!-- JavaScript Bundle with Popper -->
-<script>
+<!-- <script>
     const getCategoryPage = () => {
         fetch(`../back-end/category/getCategoryByName.php?name=<?php echo $_GET["name"] ?>`)
         .then(res => res.json())
@@ -153,4 +153,4 @@ $title = $_GET['cat'] . " Category";
         });
     }
     
-</script>
+</script> -->
