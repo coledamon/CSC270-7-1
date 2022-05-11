@@ -1,6 +1,6 @@
 <?php
 include "header.php";
-$name = $_GET['cat'];
+$name = $_GET['name'];
 ?>
     <title>
         <?php echo $_GET["name"]." Category" ?>
@@ -87,6 +87,7 @@ $name = $_GET['cat'];
         const clickMedia = document.createElement('a');
         clickMedia.setAttribute('href', `mediaPage.php?id=${id}`);
         clickMedia.classList.add('media-card');
+        clickMedia.classList.add('col-md')
 
 
         const mediaDiv = document.createElement('div');
