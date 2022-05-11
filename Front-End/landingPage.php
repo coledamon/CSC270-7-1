@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Front-End/reset.css">
-    <link rel="stylesheet" href="Front-End/style.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>Media Library</title>
 </head>
 <header>
     <?php include 'header.php' ?>
-
 </header>
 
 <body>
@@ -52,7 +51,7 @@
 
     const createCategory = (categoryName) => {
         const clickCategory = document.createElement('a');
-        clickCategory.setAttribute('href', `Front-End/categoryPage.php?cat=${categoryName}`);
+        clickCategory.setAttribute('href', `categoryPage.php?cat=${categoryName}`);
         clickCategory.classList.add('category-btn');
         clickCategory.classList.add('col-md-4.5');
         clickCategory.classList.add('m-4');

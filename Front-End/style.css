@@ -17,3 +17,8 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.media-card {
+    border: 2px solid #000;
+    padding: 15px 15px;
+}
