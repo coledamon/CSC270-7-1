@@ -1,29 +1,14 @@
 <?php
-include_once 'Front-End/landingPage.php';
+include "header.php";
 $name = $_GET['cat'];
-$title = $_GET['cat'] . " Category";
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>
-        <?php echo $title ?>
+        <?php echo $_GET["name"]." Category" ?>
     </title>
 </head>
 
-<header>
-    <?php include 'header.php' ?>
-</header>
-
 <body>
+    <?php include 'nav.php' ?>
     <h2 class="title text-center">
         <?php echo $name ?>
     </h2>
@@ -31,12 +16,7 @@ $title = $_GET['cat'] . " Category";
     <div class="d-flex">
         <div id="wrapper" class="row justify-content-center m-4"></div>
     </div>
-</body>
 
-</html>
-
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script>
     const getCategoryPage = async () => {
         await fetch(`../back-end/category/getCategoryByName.php?name=<?php echo $_GET["name"] ?>`)
@@ -132,3 +112,4 @@ $title = $_GET['cat'] . " Category";
         return clickMedia;
     }
 </script>
+<?php include "footer.php" ?>

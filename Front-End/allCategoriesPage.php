@@ -1,3 +1,9 @@
+<?php include "header.php" ?>
+    <title>All Categories</title>
+</head>
+<body>
+    <?php include "nav.php" ?>
+
 <script>
     const getCategories = () => {
         fetch("../back-end/category/getCategories.php")
@@ -7,3 +13,4 @@
         });
     }
 </script>
+<?php include "footer.php" ?>

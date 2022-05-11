@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<?php include "header.php"; ?>
     <title>Media Library</title>
 </head>
-<header>
-    <?php include 'header.php' ?>
-</header>
 
 <body>
+<?php include 'nav.php' ?>
     <h2 class="title text-center">Categories</h2>
 
     <div class="d-flex">
         <div id="wrapper" class="row justify-content-center m-4"></div>
     </div>
-</body>
-
-</html>
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 <script>
     // const categoryName = document.getElementById('categoryName');
@@ -75,7 +59,7 @@
 
     const createCategory = (categoryName) => {
         const clickCategory = document.createElement('a');
-        clickCategory.setAttribute('href', `./front-end/categoryPage.php?name=${categoryName}`);
+        clickCategory.setAttribute('href', `./categoryPage.php?name=${categoryName}`);
         clickCategory.classList.add('category-btn');
         clickCategory.classList.add('col-md-4.5');
         clickCategory.classList.add('m-4');
@@ -95,3 +79,4 @@
     }
 
 </script>
+<?php include "footer.php"?>
