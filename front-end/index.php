@@ -75,7 +75,7 @@
 
     const createCategory = (categoryName) => {
         const clickCategory = document.createElement('a');
-        clickCategory.setAttribute('href', `./categoryPage.php?name=${categoryName}`);
+        clickCategory.setAttribute('href', `./front-end/categoryPage.php?name=${categoryName}`);
         clickCategory.classList.add('category-btn');
         clickCategory.classList.add('col-md-4.5');
         clickCategory.classList.add('m-4');
