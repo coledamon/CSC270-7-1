@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../dbUtils.php";
 
 header('Content-Type: application/json');
@@ -26,7 +27,8 @@ if(isset($_POST["username"]) && isset($_POST["password"]) && $_POST["username"] 
         echo json_encode(json_decode('{"error": "'.$result.'"}'));
     }
     else {
-        echo "{}";
+        $_SESSION["isAdmin"] = true;
+        echo true;
     }
     connClose($dbConn);
 }
