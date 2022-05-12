@@ -4,23 +4,23 @@
 <body>
     <?php include "nav.php" ?>
 
-    <div class="container">
+<div class="container">
         <div class="row mt-3 justify-content-center">
             <div class="card col-8">
                 <ul class="nav nav-tabs pt-2">
                     <li class="nav-item">
-                        <a class="nav-link active" href="./adminLogin.php">Log In</a>
+                        <a class="nav-link" href="./adminLogin.php">Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./adminRegister.php">Register</a>
+                        <a class="nav-link active" href="./adminRegister.php">Register</a>
                     </li>
                 </ul>
                 <div class="p-3">
                     <div class="row text-center justify-content-center">
-                        <h3>Log In</h3>
+                        <h3>Register</h3>
                     </div>
                     <div class="row justify-content-center" >
-                        <form method="post" id="loginForm" action="./front-end" onsubmit="isValidUser(); return false;" class="col-8">
+                        <form method="post" id="createUserForm" action="./front-end" onsubmit="createUser(); return false;" class="col-8">
                             <div class="form-group">
                                 <label for="username" class="form-control-label">Username: </label>
                                 <input type="text" class="form-control" placeholder="Username" id="username" name="username"/>
@@ -32,7 +32,7 @@
                                 <span class="text-success mb-1" id="succTxt"></span>
                             </div>
                             <div class="row justify-content-center">
-                                <button type="submit" class="btn btn-primary" >Log in</button>
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </div>
                         </form>
                     </div>
@@ -42,9 +42,9 @@
     </div>
     
     <script>
-        const isValidUser = () => {
-            fetch(`../back-end/user/isValidUser.php`, {
-                body: new URLSearchParams(new FormData(document.getElementById("loginForm"))).toString(),
+        const createUser = () => {
+            fetch("../back-end/user/createUser.php", {
+                body: new URLSearchParams(new FormData(document.getElementById("createUserForm"))).toString(),
                 headers: {
                      "Content-Type": "application/x-www-form-urlencoded",
                 },
@@ -64,7 +64,6 @@
                     window.location.replace("/front-end");
                 }
             });
-            return false;
         }
     </script>
 <?php include "footer.php" ?>
