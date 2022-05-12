@@ -32,6 +32,39 @@
         <button type="button" class="btn btn-success create-btn" data-toggle="modal" data-target="#myModal">Create +</button>
         <div id="wrapper" class="row"></div>
     </div> -->
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Category</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="createMediaForm" method="POST" action="./categoryPage.php?name=<?php echo $name ?>">
+                        <div class="form-group">
+                            <label for="category">Category:</label>
+                            <input type="category" class="form-control" placeholder="Enter category" id="category">
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="createMedia()">Submit</button>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 </body>
 
 </html>
