@@ -15,7 +15,7 @@ function getCategories($dbConn) {
 
     return @mysqli_query($dbConn, $query);
 }
-$json = formatRecords(getCategories($dbConn));
+$json = json_encode(json_decode("[".formatRecords(getCategories($dbConn))."]"));
 connClose($dbConn);
 
 echo $json;
