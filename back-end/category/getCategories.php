@@ -15,9 +15,9 @@ function getCategories($dbConn) {
 
     return @mysqli_query($dbConn, $query);
 }
-$json = formatRecords(getCategories($dbConn, $use));
+$json = formatRecords(getCategories($dbConn));
 if(!str_starts_with($json, "[")) {
-    $json = json_encode(json_decode("[".formatRecords(getCategories($dbConn, $use))."]"));
+    $json = json_encode(json_decode("[".formatRecords(getCategories($dbConn))."]"));
 }connClose($dbConn);
 
 echo $json;
