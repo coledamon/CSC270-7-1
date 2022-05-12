@@ -27,7 +27,10 @@ function getMediaByCategory($dbConn, $name) {
 }
 if(isset($_GET["name"]) && $_GET["name"]) {
     $name = sanitizeInput($_GET["name"]);
-    $json = json_encode(json_decode("[".formatRecords(getMediaByCategory($dbConn, $name))."]"));
+    $json = formatRecords(getMediaByCategory($dbConn, $use));
+    if(!str_starts_with($json, "[")) {
+        $json = json_encode(json_decode("[".formatRecords(getMediaByCategory($dbConn, $use))."]"));
+    }
     if($json == "null") {
         echo json_encode(json_decode('{"error": "Invalid Category Name"}'));
     }
