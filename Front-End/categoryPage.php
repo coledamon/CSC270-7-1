@@ -10,8 +10,8 @@ $name = $_GET['name'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Front-End/reset.css">
-    <link rel="stylesheet" href="Front-End/style.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>
         <?php echo $_GET["name"] . " Category" ?>
@@ -92,12 +92,12 @@ $name = $_GET['name'];
     const displayMedia = (media) => {
         const wrapper = document.getElementById('wrapper');
         media.forEach(media => {
-            const mediaDiv = createMediaCard(media.Title, media.Creator, media.Genre, media.Year, media.Link, media.id);
+            const mediaDiv = createMediaCard(media.Title, media.Creator, media.Genre, media.Year, media.id);
             wrapper.append(mediaDiv);
         })
     }
 
-    const createMediaCard = (title, creator, genre, year, link, id) => {
+    const createMediaCard = (title, creator, genre, year, id) => {
         const clickMedia = document.createElement('a');
         clickMedia.setAttribute('href', `mediaPage.php?id=${id}`);
         clickMedia.classList.add('media-card');

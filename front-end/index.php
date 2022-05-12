@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Front-End/reset.css">
-    <link rel="stylesheet" href="Front-End/style.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <title>Media Library</title>
 </head>
@@ -17,8 +17,8 @@
 <body>
     <h2 class="title text-center">Categories</h2>
 
-    <div class="d-flex">
-        <div id="wrapper" class="row justify-content-center m-4"></div>
+    <div class="d-flex justify-content-center">
+        <div id="wrapper" class="row m-4"></div>
     </div>
 </body>
 
@@ -75,7 +75,7 @@
 
     const createCategory = (categoryName) => {
         const clickCategory = document.createElement('a');
-        clickCategory.setAttribute('href', `./categoryPage.php?name=${categoryName}`);
+        clickCategory.setAttribute('href', `categoryPage.php?name=${categoryName}`);
         clickCategory.classList.add('category-btn');
         clickCategory.classList.add('col-md-4.5');
         clickCategory.classList.add('m-4');
