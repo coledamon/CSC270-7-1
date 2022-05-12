@@ -50,23 +50,28 @@ $name = $_GET['name'];
                     <form id="createMediaForm" method="POST" action="./categoryPage.php?name=<?php echo $name ?>">
                         <div class="form-group">
                             <label for="name">Title:</label>
-                            <input type="name" class="form-control" placeholder="Enter title" id="name">
+                            <input type="name" class="form-control" placeholder="Enter title" id="name" name="name">
                         </div>
                         <div class="form-group">
                             <label for="year">Year:</label>
-                            <input type="year" class="form-control" placeholder="Enter year" id="year">
+                            <input type="year" class="form-control" placeholder="Enter year" id="year" name="year">
                         </div>
                         <div class="form-group">
                             <label for="creator">Creator:</label>
-                            <input type="creator" class="form-control" placeholder="Enter creator" id="creator">
+                            <input type="creator" class="form-control" placeholder="Enter creator" id="creator" name="creator">
                         </div>
                         <div class="form-group">
                             <label for="genre">Genre:</label>
-                            <input type="genre" class="form-control" placeholder="Enter genre" id="genre">
+                            <input type="genre" class="form-control" placeholder="Enter genre" id="genre" name="genre">
                         </div>
                         <div class="form-group">
                             <label for="link">Link:</label>
-                            <input type="link" class="form-control" placeholder="Enter link if applicable" id="link">
+                            <input type="link" class="form-control" placeholder="Enter link if applicable" id="link" name="link">
+                        </div>
+                        <div class="form-group">
+                            <label for="link">Category ID:</label>
+                            <span id="catId" name="catId"></span>
+                            <!-- <input type="link" class="form-control" placeholder="Enter link if applicable" id="link" name="link"> -->
                         </div>
                         <button type="submit" class="btn btn-primary" onsubmit="createMedia()">Submit</button>
                     </form>
@@ -91,6 +96,7 @@ $name = $_GET['name'];
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                document.getElementById('catId').innerHTML = data.id;
                 //take the data and display title && body && use name for header
             });
     }
