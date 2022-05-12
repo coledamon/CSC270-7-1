@@ -61,7 +61,7 @@
                     document.getElementById("errorTxt").innerHTML = "";
                     document.getElementById("succTxt").innerHTML = "Successfully Logged In";
                     console.log(data);
-                    window.location.replace("/front-end");
+                    window.location.replace("/front-end/");
                 }
             });
         }
