@@ -82,7 +82,7 @@ $name = $_GET['name'];
 
             </div>
         </div>
-    </div
+    </div>
 <script>
     const getCategoryPage = async () => {
         await fetch(`../back-end/category/getCategoryByName.php?name=<?php echo $_GET["name"] ?>`)
