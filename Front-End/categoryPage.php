@@ -47,28 +47,31 @@ $name = $_GET['name'];
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="createMediaForm" method="POST" action="./categoryPage.php?name=<?php echo $name ?>">
+                    <form id="createMediaForm" method="POST" action="/" onsubmit="createMedia(); return false;">
                         <div class="form-group">
-                            <label for="name">Title:</label>
-                            <input type="name" class="form-control" placeholder="Enter title" id="name">
+                            <label for="name">Title:<span class="text-danger">*</span></label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter title" id="name" required>
                         </div>
+                        <input type="hidden" name="categoryId" id="categoryId" />
                         <div class="form-group">
                             <label for="year">Year:</label>
-                            <input type="year" class="form-control" placeholder="Enter year" id="year">
+                            <input type="number" name="year" class="form-control" placeholder="Enter year" id="year">
                         </div>
                         <div class="form-group">
                             <label for="creator">Creator:</label>
-                            <input type="creator" class="form-control" placeholder="Enter creator" id="creator">
+                            <input type="text" name="creator" class="form-control" placeholder="Enter creator" id="creator" />
                         </div>
                         <div class="form-group">
                             <label for="genre">Genre:</label>
-                            <input type="genre" class="form-control" placeholder="Enter genre" id="genre">
+                            <input type="text" name="genre" class="form-control" placeholder="Enter genre" id="genre" />
                         </div>
                         <div class="form-group">
                             <label for="link">Link:</label>
-                            <input type="link" class="form-control" placeholder="Enter link if applicable" id="link">
+                            <input type="text" name="link" class="form-control" placeholder="Enter link if applicable" id="link" />
+                            <span class="text-danger mb-1" id="errorTxt"></span>
+                            <span class="text-success mb-1" id="succTxt"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary" onsubmit="createMedia()">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
 
@@ -92,6 +95,7 @@ $name = $_GET['name'];
             .then(data => {
                 console.log(data);
                 //take the data and display title && body && use name for header
+                document.getElementById("categoryId").value = data.id;
             });
     }
 
@@ -132,6 +136,15 @@ $name = $_GET['name'];
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.error) {
+                    document.getElementById("errorTxt").innerHTML = data.error;
+                    document.getElementById("succTxt").innerHTML = "";
+                }
+                else {
+                    document.getElementById("errorTxt").innerHTML = "";
+                    document.getElementById("succTxt").innerHTML = "Media Created";
+                    window.location.replace("./categoryPage.php?name=<?php echo $name ?>");
+                }
             });
     }
 
