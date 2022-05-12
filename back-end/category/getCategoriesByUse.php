@@ -17,7 +17,10 @@ function getCategoriesByUse($dbConn, $use) {
 }
 if(isset($_GET["use"]) && $_GET["use"]) {
     $use = sanitizeInput($_GET["use"]);
-    $json = json_encode(json_decode("[".formatRecords(getCategoriesByUse($dbConn, $use))."]"));
+    $json = formatRecords(getCategoriesByUse($dbConn, $use));
+    if(!str_starts_with($json, "[")) {
+        $json = json_encode(json_decode("[".formatRecords(getCategoriesByUse($dbConn, $use))."]"));
+    }
     if($json == "null") {
         echo json_encode(json_decode('{"error": "Invalid Use State"}'));
     }
