@@ -5,24 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
+    <!-- <link rel="stylesheet" href="reset.css"> -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<?php include "header.php" ?>
+    <?php include "header.php" ?>
     <title>Media Library</title>
 </head>
 <?php include 'nav.php' ?>
 
 <body>
-    <?php if(isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
-              echo "This is how the program knows if a user is logged in or not";
-          } 
-     ?>
+    <?php if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
+        echo "This is how the program knows if a user is logged in or not";
+    }
+    ?>
     <h2 class="title text-center">Categories</h2>
 
-    <div class="d-flex justify-content-center">
-        <div id="wrapper" class="row m-4"></div>
+    <br>
+    <div class="d-flex flex-column justify-content-center">
+        <div class="row justify-content-center ">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Create +</button>
+        </div>
+        <br>
+        <div id="wrapper" class="row justify-content-center"></div>
     </div>
+    <!-- <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-success create-btn" data-toggle="modal" data-target="#myModal">Create +</button>
+        <div id="wrapper" class="row"></div>
+    </div> -->
 </body>
 
 </html>
@@ -46,24 +55,24 @@
 
     const createCategoryPage = () => {
         fetch("../back-end/category/createCategoryPage.php", {
-            body: new URLSearchParams(new FormData(document.getElementById("createCategoryPageForm"))).toString(),
-            headers: {
-                 "Content-Type": "application/x-www-form-urlencoded",
-            },
-            method: "post"
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        });
+                body: new URLSearchParams(new FormData(document.getElementById("createCategoryPageForm"))).toString(),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                method: "post"
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
     }
 
     const stopUseCategory = (id) => {
         fetch(`../back-end/category/stopUseCategory.php?id=${id}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        });
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
     }
 
     getCategoriesByUse();
@@ -92,9 +101,8 @@
         categoryDiv.append(h3);
         clickCategory.append(categoryDiv);
         console.log(h3.textContent + " create");
-        
+
 
         return clickCategory;
     }
-
 </script>
