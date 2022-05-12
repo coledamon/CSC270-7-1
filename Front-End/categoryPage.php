@@ -161,7 +161,7 @@ $name = $_GET['name'];
         const noRecords = document.createElement('h4');
         media.forEach(media => {
             if (!media.error) {
-                const mediaDiv = createMediaCard(media.Title, media.Creator, media.Genre, media.Year, media.id);
+                const mediaDiv = createMediaCard(media.Name, media.Creator, media.Genre, media.Year, media.id);
                 wrapper.append(mediaDiv);
             } else {
                 noRecords.textContent = media.error;
