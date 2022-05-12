@@ -68,7 +68,7 @@ $name = $_GET['name'];
                             <label for="link">Link:</label>
                             <input type="link" class="form-control" placeholder="Enter link if applicable" id="link">
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="createMedia()">Submit</button>
+                        <button type="submit" class="btn btn-primary" onsubmit="createMedia()">Submit</button>
                     </form>
                 </div>
 
