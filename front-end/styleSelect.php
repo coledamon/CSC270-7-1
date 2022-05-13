@@ -1,12 +1,6 @@
 <?php include "header.php" ?>
     <title>Style Selection</title>
 </head>
-<?php 
-if(!(isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"])) {
-    header("Location: ./");
-    exit();
-}
-?>
 <body>
     <?php include "nav.php" ?>
 
