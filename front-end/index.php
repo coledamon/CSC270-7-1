@@ -125,7 +125,7 @@
         categories.forEach(category => {
             wrapper.innerHTML += `
                                 <a class="category-btn btn-color-<?php echo $_SESSION["style"] ?> col-md-3 mx-4 mb-2 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
-                                    <div class="m-2"><h3>${category.Name}</h3></div>
+                                    <h3 class="m-1">${category.Name}</h3>
                                 </a>`;
         })
     }
