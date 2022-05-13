@@ -263,7 +263,7 @@ $name = $_GET['name'];
         const clickMedia = document.createElement('a');
         clickMedia.setAttribute('href', `/front-end/mediaPage.php?id=${id}`);
         clickMedia.classList.add('media-card');
-        // clickMedia.classList.add('col-md')
+        clickMedia.classList.add('m-3')
 
 
         const mediaDiv = document.createElement('div');
@@ -272,9 +272,16 @@ $name = $_GET['name'];
         mediaDiv.classList.add('btn-bg-<?php echo $_SESSION["style"] ?>')
         mediaDiv.classList.add('br-5')
 
+        const mediaContentDiv = document.createElement('div');
+        // mediaContentDiv.classList.add('m-4');
+        mediaContentDiv.classList.add('p-4');
+        mediaContentDiv.classList.add('br-5');
+        mediaContentDiv.classList.add('media-content');
+
         const mediaTitle = document.createElement('h4');
         mediaTitle.textContent = title;
         mediaTitle.classList.add('text-center');
+        mediaTitle.classList.add('p-1');
 
         const mediaCreator = document.createElement('p');
         mediaCreator.textContent = `Creator: ${creator}`;
@@ -285,8 +292,8 @@ $name = $_GET['name'];
         const mediaYear = document.createElement('p');
         mediaYear.textContent = `Released: ${year}`;
 
-
-        mediaDiv.append(mediaTitle, mediaCreator, mediaGenre, mediaYear);
+        mediaContentDiv.append(mediaCreator, mediaGenre, mediaYear);
+        mediaDiv.append(mediaTitle, mediaContentDiv);
         clickMedia.append(mediaDiv);
 
         return clickMedia;

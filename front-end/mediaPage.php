@@ -1,7 +1,7 @@
-<?php include 'header.php'; 
-      $id = $_GET['id'];
+<?php include 'header.php';
+$id = $_GET['id'];
 ?>
-    <title id="medTitle"></title>
+<title id="medTitle"></title>
 </head>
 
 <header>
@@ -14,7 +14,7 @@
             <h2 class="text-center" id="medHeading"></h2>
         </div>
         <?php if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
-                  echo '
+            echo '
                         <div class="row justify-content-end">
                             <div class="col-auto">
                                 <button type="button" class="btn btn-secondary" onclick="editOn();">Edit</button>
@@ -22,10 +22,10 @@
                             </div>
                         </div>
                         ';
-              }
+        }
         ?>
         <div id="editOff" class="row justify-content-center">
-            <div class="col-md-10 text-center">
+            <div class="col-md-10">
                 <p id="medBody"></p>
             </div>
         </div>
@@ -121,160 +121,164 @@
         </div>
     </div>
 
-    
 
-<script>
-    const getMediaById = () => {
-            fetch(`../back-end/media/getMediaById.php?id=<?php echo $_GET["id"];?>`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            document.getElementById("name").innerHTML = data.Name;
-            document.getElementById("mediaId").value = data.id;
-            document.getElementById("titleEdit").value = data.Title;
-            document.getElementById("headingEdit").value = data.Heading;
-            document.getElementById("bodyEdit").value = data.Body;
-            document.getElementById("nameEdit").value = data.Name;
-            document.getElementById("yearEdit").value = data.Year;
-            document.getElementById("creatorEdit").value = data.Creator;
-            document.getElementById("genreEdit").value = data.Genre;
-            document.getElementById("linkEdit").value = data.Link;
 
-            document.getElementById("medTitle").innerHTML = data.Title;
+    <script>
+        const getMediaById = () => {
+            fetch(`../back-end/media/getMediaById.php?id=<?php echo $_GET["id"]; ?>`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("name").innerHTML = data.Name;
+                    document.getElementById("mediaId").value = data.id;
+                    document.getElementById("titleEdit").value = data.Title;
+                    document.getElementById("headingEdit").value = data.Heading;
+                    document.getElementById("bodyEdit").value = data.Body;
+                    document.getElementById("nameEdit").value = data.Name;
+                    document.getElementById("yearEdit").value = data.Year;
+                    document.getElementById("creatorEdit").value = data.Creator;
+                    document.getElementById("genreEdit").value = data.Genre;
+                    document.getElementById("linkEdit").value = data.Link;
 
-            if (data.Heading === null) {
-                document.getElementById("medHeading").innerHTML = data.Name;
-            } else {
-                document.getElementById("medHeading").innerHTML = data.Heading;
-            }
-            
-            document.getElementById("medBody").innerHTML = data.Body;
+                    document.getElementById("medTitle").innerHTML = data.Title;
 
-            document.getElementById("catName").innerHTML = data.Category;
+                    if (data.Heading === null) {
+                        document.getElementById("medHeading").innerHTML = data.Name;
+                    } else {
+                        document.getElementById("medHeading").innerHTML = data.Heading;
+                    }
 
-            document.getElementById("wrapper").innerHTML = `
-                                                            <div class="col-6 card p-3">
-                                                                <div class="row mb-2">
-                                                                    <div class="col-6">
-                                                                        <div class="row">
-                                                                            <div class="col-12 font-weight-bold">
-                                                                                Name:
+                    document.getElementById("medBody").innerHTML = data.Body;
+
+                    document.getElementById("catName").innerHTML = data.Category;
+
+                    document.getElementById("wrapper").innerHTML = `
+                                                            <div class="container d-flex justify-content-center">
+                                                                <div class="col-6 card btn-border-<?php echo $_SESSION["style"] ?> bg-dark p-3 justify-content-center">
+                                                                    <div class="btn-bg-<?php echo $_SESSION["style"] ?> media-info p-4 br-5">
+                                                                        <div class="row mb-2 ">
+                                                                                <div class="col-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 font-weight-bold">
+                                                                                            Name:
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-12">
+                                                                                            &nbsp;${data.Name}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 font-weight-bold">
+                                                                                            Year Created:
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-12">
+                                                                                            &nbsp;${data.Year}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                &nbsp;${data.Name}
+                                                                            <div class="row mb-2">
+                                                                                <div class="col-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 font-weight-bold">
+                                                                                            Creator's Name:
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-12">
+                                                                                            &nbsp;${data.Creator}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 font-weight-bold">
+                                                                                            Genre/type:
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-12">
+                                                                                            &nbsp;${data.Genre}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <div class="row">
-                                                                            <div class="col-12 font-weight-bold">
-                                                                                Year Created:
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                &nbsp;${data.Year}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-2">
-                                                                    <div class="col-6">
-                                                                        <div class="row">
-                                                                            <div class="col-12 font-weight-bold">
-                                                                                Creator's Name:
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                &nbsp;${data.Creator}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <div class="row">
-                                                                            <div class="col-12 font-weight-bold">
-                                                                                Genre/type:
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                &nbsp;${data.Genre}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="row">
-                                                                            <div class="col-12 font-weight-bold">
-                                                                                Link:
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-12">
-                                                                                &nbsp;${data.Link ? "<a href=\""+data.Link+"\" target=\"_blank\">"+data.Name+"</a>" : "No Link"}
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 font-weight-bold">
+                                                                                            Link:
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-12">
+                                                                                            &nbsp;${data.Link ? "<a href=\""+data.Link+"\" target=\"_blank\">"+data.Name+"</a>" : "No Link"}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                                    
                                                            `;
-        });
-    }
+                });
+        }
 
-    getMediaById();
+        getMediaById();
 
-    const updateMedia = () => {
-        fetch("../back-end/media/updateMedia.php", {
-            body: new URLSearchParams(new FormData(document.getElementById("updateMediaForm"))).toString(),
-            headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-            },
-            method: "post"
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if (data.error) {
-                document.getElementById("errorTxt").innerHTML = data.error;
-                document.getElementById("succTxt").innerHTML = "";
-            }
-            else {
-                document.getElementById("errorTxt").innerHTML = "";
-                document.getElementById("succTxt").innerHTML = "Media Updated";
-                window.location.replace("/front-end/mediaPage.php?id=<?php echo $id ?>");
-            }
-        });
-    }
+        const updateMedia = () => {
+            fetch("../back-end/media/updateMedia.php", {
+                    body: new URLSearchParams(new FormData(document.getElementById("updateMediaForm"))).toString(),
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    method: "post"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.error) {
+                        document.getElementById("errorTxt").innerHTML = data.error;
+                        document.getElementById("succTxt").innerHTML = "";
+                    } else {
+                        document.getElementById("errorTxt").innerHTML = "";
+                        document.getElementById("succTxt").innerHTML = "Media Updated";
+                        window.location.replace("/front-end/mediaPage.php?id=<?php echo $id ?>");
+                    }
+                });
+        }
 
 
-    const deleteMedia = () => {
-        fetch(`../back-end/media/deleteMediaById.php?id=${document.getElementById("mediaId").value}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.error) {
-                    document.getElementById("errorTxt").innerHTML = data.error;
-                    document.getElementById("succTxt").innerHTML = "";
-                }
-                else {
-                    document.getElementById("errorTxt").innerHTML = "";
-                    document.getElementById("succTxt").innerHTML = "Media Created";
-                    window.location.replace(`/front-end/categoryPage.php?name=${document.getElementById("catName").innerHTML}`);
-                }
-            });
-    }
+        const deleteMedia = () => {
+            fetch(`../back-end/media/deleteMediaById.php?id=${document.getElementById("mediaId").value}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.error) {
+                        document.getElementById("errorTxt").innerHTML = data.error;
+                        document.getElementById("succTxt").innerHTML = "";
+                    } else {
+                        document.getElementById("errorTxt").innerHTML = "";
+                        document.getElementById("succTxt").innerHTML = "Media Created";
+                        window.location.replace(`/front-end/categoryPage.php?name=${document.getElementById("catName").innerHTML}`);
+                    }
+                });
+        }
 
-    const editOn = () => {
-        document.getElementById("editOn").classList.remove("d-none");
-        document.getElementById("editOff").classList.add("d-none");
-    }
-    const editOff = () => {
-        document.getElementById("editOff").classList.remove("d-none");
-        document.getElementById("editOn").classList.add("d-none");
-    }
-</script>
-<?php include "footer.php" ?>
+        const editOn = () => {
+            document.getElementById("editOn").classList.remove("d-none");
+            document.getElementById("editOff").classList.add("d-none");
+        }
+        const editOff = () => {
+            document.getElementById("editOff").classList.remove("d-none");
+            document.getElementById("editOn").classList.add("d-none");
+        }
+    </script>
+    <?php include "footer.php" ?>

@@ -13,8 +13,9 @@
     border-radius: 5px;
     /* padding: 20px; */
     text-decoration: none;
-    color: #000;
+    color: #f1eeee;
     margin: 10px;
+    /* box-shadow: 4px 8px #888888; */
 }
 
     .media-card:hover {
@@ -23,8 +24,35 @@
     }
 
 .media-data {
-    width: 250px;
+    border: 2px solid #000;
+    width: 285px;
+    height: 300px;
     padding: 20px 15px;
+    box-shadow: 4px 8px #888888;
+}
+
+.media-content {
+    border: 2px solid #000;
+    background-color: #3595bb;
+    color: #000000;
+    font-weight: 600;
+}
+
+.media-info {
+    /* border: 3px solid #000; */
+    background-color: #3595bb;
+    /* width: 100px; */
+    /* height: 250px; */
+    /* padding: 20px 15px; */
+    /* box-shadow: 4px 8px #888888; */
+}
+
+#medBody {
+    font-size: 13pt;
+    font-weight: 600;
+    margin-top: 20px;
+    word-wrap: normal;
+    text-align-last: left;
 }
 
 .title {
@@ -38,6 +66,8 @@
 .br-5 {
     border-radius: 5px;
 }
+
+
 
 /*STYLE OPTIONS ----------------------------------------------*/
 .btn-color-1, .btn-bg-1 {
