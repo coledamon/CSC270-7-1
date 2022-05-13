@@ -1,16 +1,10 @@
 .category-btn {
-    background-color: #d33809;
     border-radius: 5px;
-    color: #faebd7;
-    border: 3px solid #000;
     font-size: 21pt;
     text-decoration: none;
 }
 
 .category-btn:hover {
-    border: 3px solid #d33809;
-    background-color: #f5f5dc;
-    color: #000;
     text-decoration: none;
     cursor: pointer;
 }
@@ -40,4 +34,37 @@
 
 .create-btn {
     margin-right: 755px;
+}
+
+/*STYLE OPTIONS ----------------------------------------------*/
+.btn-color-1 {
+    background-color: #d33809 !important;
+    border: 3px solid #000 !important;
+    color: #faebd7 !important;
+}
+.btn-color-2 {
+    background-color: #225560 !important;
+    border: 3px solid #000 !important;
+    color: #faebd7 !important;
+}
+.btn-color-3 {
+    background-color: #519872 !important;
+    border: 3px solid #000 !important;
+    color: #faebd7 !important;
+}
+
+.btn-color-1:hover {
+    background-color: #f5f5dc !important;
+    border: 3px solid #d33809 !important;
+    color: #000 !important;
+}
+.btn-color-2:hover {
+    background-color: #f5f5dc !important;
+    border: 3px solid #225560 !important;
+    color: #000 !important;
+}
+.btn-color-3:hover {
+    background-color: #f5f5dc !important;
+    border: 3px solid #519872 !important;
+    color: #000 !important;
 }

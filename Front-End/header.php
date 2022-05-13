@@ -1,6 +1,16 @@
 <?php
 
-session_start()
+session_start();
+
+if(!isset($_SESSION["style"])) {
+    $_SESSION["style"] = 1;
+}
+
+if(isset($_GET["style"])) {
+    if(is_numeric($_GET["style"]) && ($_GET["style"] == "1" || $_GET["style"] == "2" || $_GET["style"] == "3")) {
+        $_SESSION["style"] = (int)$_GET["style"];
+    }
+}
 
 ?>
 

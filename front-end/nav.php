@@ -9,6 +9,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/front-end">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/front-end/styleSelect.php">Styles</a>
+            </li>
             <?php
                 if(isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
                     echo "<li class=\"nav-item\">
