@@ -1,3 +1,7 @@
+<?php
+    include "header.php";
+?>
+    <title></title>
 <?php include "header.php" ?>
     <title>All Categories</title>
 </head>
@@ -19,6 +23,9 @@
                 <p>As an Admin, you have the ability to add or remove any one of these categories from the users' eyes through the buttons on the home and category pages.</p>
                 <ul id="categoryList">
 
+    <script>
+
+    </script>
                 </ul>
             </div>
         </div>
