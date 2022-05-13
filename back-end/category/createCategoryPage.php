@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 $dbConn = ConnGet();
 
 function createCategoryPage($dbConn, $category_id, $title, $body) {
-    @mysqli_query($dbConn, "Update Category set used = true where category_id = ".$category_id);
+    @mysqli_query($dbConn, "Update Category set used = true where id = ".$category_id);
 
     $queryInsert = "INSERT INTO CategoryPage(
                         category_id";
@@ -26,7 +26,7 @@ function createCategoryPage($dbConn, $category_id, $title, $body) {
     return $result? $result : @mysqli_error($dbConn);
 }
 
-if(isset($_POST["name"]) && isset($_POST["authorId"]) && isset($_POST["categoryId"])) {
+if(isset($_POST["categoryId"])) {
     if(is_numeric($_POST["categoryId"])) {
         $category_id = (int)sanitizeInput($_POST["categoryId"]);
         $title = isset($_POST["title"]) ? sanitizeInput($_POST["title"]) : null;
@@ -36,7 +36,7 @@ if(isset($_POST["name"]) && isset($_POST["authorId"]) && isset($_POST["categoryI
             echo json_encode(json_decode('{"error": "'.$result.'"}'));
         }
         else {
-            echo "{}";
+            echo true;
         }
         connClose($dbConn);
     }

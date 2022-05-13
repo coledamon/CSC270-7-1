@@ -13,7 +13,7 @@
             <h2 class="text-center">Categories</h2>
         </div>
         <div class="row justify-content-end">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Create +</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add +</button>
         </div>
         <div id="wrapper" class="row justify-content-center my-2"></div>
     </div>
@@ -23,35 +23,44 @@
     </div> -->
 
     <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <form id="createCategoryPageForm" method="POST" action="/" onsubmit="createCategoryPage(); return false;">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalLabel">Add Category</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Category</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                            <div class="form-group">
+                                <label for="catSelect" class="form-control-label">Category:</label>
+                                <select id="catSelect" name="categoryId" class="form-control">
+                                
+                                </select>
+                                <span class="text-danger mb-1" id="errorTxt"></span>
+                                <span class="text-success mb-1" id="succTxt"></span>
+                            </div>
+                    </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="createMediaForm" method="POST" action="./categoryPage.php?name=<?php echo $name ?>">
-                        <div class="form-group">
-                            <label for="category">Category:</label>
-                            <input type="category" class="form-control" placeholder="Enter category" id="category">
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="createMedia()">Submit</button>
-                    </form>
+                    </div>
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
+
 
 <script>
     // const categoryName = document.getElementById('categoryName');
@@ -66,6 +75,16 @@
                 //     console.log(category);
                 // });
             });
+        fetch("../back-end/category/getCategoriesByUse.php?use=false")
+            .then(res => res.json())
+            .then(data => {
+                const catSelect = document.getElementById("catSelect")
+                data.forEach(category => {
+                    catSelect.innerHTML += `
+                                            <option value=${category.id}>${category.Name}</option>
+                                           `;
+                });
+            });
     }
 
     const createCategoryPage = () => {
@@ -79,6 +98,15 @@
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.error) {
+                    document.getElementById("errorTxt").innerHTML = data.error;
+                    document.getElementById("succTxt").innerHTML = "";
+                }
+                else {
+                    document.getElementById("errorTxt").innerHTML = "";
+                    document.getElementById("succTxt").innerHTML = "Media Created";
+                    window.location.replace("./front-end");
+                }
             });
     }
 
@@ -96,7 +124,7 @@
         const wrapper = document.getElementById('wrapper');
         categories.forEach(category => {
             wrapper.innerHTML += `
-                                <a class="category-btn btn-color-<?php echo $_SESSION["style"] ?> col-md-3 mx-4 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
+                                <a class="category-btn btn-color-<?php echo $_SESSION["style"] ?> col-md-3 mx-4 mb-2 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
                                     <div class="m-2"><h3>${category.Name}</h3></div>
                                 </a>`;
         })
