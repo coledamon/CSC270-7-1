@@ -21,7 +21,7 @@ if(isset($_GET["id"]) && $_GET["id"]) {
             echo json_encode(json_decode('{"error": "'.$result.'"}'));
         }
         else {
-            echo "{}";
+            echo true;
         }
         connClose($dbConn);
     }

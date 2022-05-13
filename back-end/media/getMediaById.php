@@ -15,10 +15,13 @@ function getMediaById($dbConn, $id) {
                 'Link', m.link,
                 'Title', mp.title,
                 'Heading', mp.heading,
-                'Body', mp.body) as Media
+                'Body', mp.body,
+                'Category', c.category_name) as Media
                 FROM Media m
                 LEFT JOIN MediaPage mp 
                     ON mp.media_id = m.id
+                JOIN Category c
+                    ON c.id = m.category_id
                 WHERE m.id = ".$id.";";
     $result = @mysqli_query($dbConn, $query);
     return $result? $result : @mysqli_error($dbConn);
