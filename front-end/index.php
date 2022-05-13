@@ -129,11 +129,11 @@
         categoryDiv.setAttribute('id', categoryName);
         // categoryDiv.classList.add('align-content-center');
 
-        const h3 = document.createElement('h3');
-        h3.textContent = categoryName;
-        categoryDiv.append(h3);
-        clickCategory.append(categoryDiv);
-        console.log(h3.textContent + " create");
+        const category = document.createElement('h3');
+        category.textContent = categoryName;
+        // categoryDiv.append(category);
+        clickCategory.append(category);
+        // console.log(h3.textContent + " create");
 
 
         return clickCategory;
