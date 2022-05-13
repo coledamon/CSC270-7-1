@@ -242,14 +242,6 @@ $name = $_GET['name'];
             });
     }
 
-    const deleteMedia = (id) => {
-        fetch(`../back-end/media/deleteMediaById.php?id=${id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            });
-    }
-
     const displayMedia = (media) => {
         const wrapper = document.getElementById('wrapper');
         const noRecords = document.createElement('h4');
