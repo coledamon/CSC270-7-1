@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="reset.css"> -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <?php include "header.php" ?>
+<?php include "header.php" ?>
     <title>Media Library</title>
 </head>
 <?php include 'nav.php' ?>
@@ -18,15 +8,14 @@
         echo "This is how the program knows if a user is logged in or not";
     }
     ?>
-    <h2 class="title text-center">Categories</h2>
-
-    <br>
-    <div class="d-flex flex-column justify-content-center">
-        <div class="row justify-content-center ">
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <h2 class="text-center">Categories</h2>
+        </div>
+        <div class="row justify-content-end">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Create +</button>
         </div>
-        <br>
-        <div id="wrapper" class="row justify-content-center"></div>
+        <div id="wrapper" class="row justify-content-center my-2"></div>
     </div>
     <!-- <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-success create-btn" data-toggle="modal" data-target="#myModal">Create +</button>
@@ -106,30 +95,12 @@
     const displayCategories = (categories) => {
         const wrapper = document.getElementById('wrapper');
         categories.forEach(category => {
-            const categoryDiv = createCategory(category.Name);
-            wrapper.append(categoryDiv);
+            wrapper.innerHTML += `
+                                <a class="category-btn col-md-3 mx-4 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
+                                    <div class="m-2"><h3>${category.Name}</h3></div>
+                                </a>`;
         })
     }
 
-    const createCategory = (categoryName) => {
-        const clickCategory = document.createElement('a');
-        clickCategory.setAttribute('href', `categoryPage.php?name=${categoryName}`);
-        clickCategory.classList.add('category-btn');
-        clickCategory.classList.add('col-md-4.5');
-        clickCategory.classList.add('m-4');
-
-        const categoryDiv = document.createElement('div');
-        categoryDiv.setAttribute('id', categoryName);
-        // categoryDiv.classList.add('align-content-center');
-
-        const h3 = document.createElement('h3');
-        h3.textContent = categoryName;
-        categoryDiv.append(h3);
-        clickCategory.append(categoryDiv);
-        console.log(h3.textContent + " create");
-
-
-        return clickCategory;
-    }
 </script>
 <?php include "footer.php" ?>
