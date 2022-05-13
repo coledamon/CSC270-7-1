@@ -2,7 +2,7 @@
 include "header.php";
 $name = $_GET['name'];
 ?>
-    <title><?php echo $_GET["name"] . " Category" ?></title>
+    <title id="catTitle"></title>
 </head>
 
 <body>
@@ -17,12 +17,39 @@ $name = $_GET['name'];
                         <div class="row justify-content-end">
                             <div class="col-auto">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add +</button>
+                                <button type="button" class="btn btn-secondary" onclick="editOn();">Edit</button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
                             </div>
                         </div>
                         ';
                 }
         ?>
+        <div id="editOff" class="row justify-content-center">
+            <div class="col-md-10 text-center">
+                <p id="catBody"></p>
+            </div>
+        </div>
+        <div id="editOn" class="row justify-content-center d-none">
+            <div class="col-md-10">
+                <form id="updateCategoryPageForm" method="POST" action="/" onsubmit="updateCategoryPage(); return false;">
+                    <input type="hidden" name="id" id="categoryId2" />
+                    <div class="form-group">
+                        <label for="titleEdit" class="form-control-label">Title: </label>
+                        <input class="form-control" type="text" name="title" placeholder="Page Title" id="titleEdit" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bodyEdit" class="form-control-label">Body: </label>
+                        <textarea class="form-control" type="text" name="body" placeholder="Body" id="bodyEdit" cols="50" rows="3"></textarea>
+                        <span class="text-danger mb-1" id="errorTxt"></span>
+                        <span class="text-success mb-1" id="succTxt"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" onclick="editOff();" class="btn btn-danger float-right">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div id="wrapper" class="row justify-content-center my-2"></div>
     </div>
 
@@ -38,11 +65,11 @@ $name = $_GET['name'];
 
                     <!-- Modal body -->
                     <div class="modal-body">
+                        <input type="hidden" name="categoryId" id="categoryId" />
                         <div class="form-group">
                             <label for="name">Title:<span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" placeholder="Enter title" id="name" required>
                         </div>
-                        <input type="hidden" name="categoryId" id="categoryId" />
                         <div class="form-group">
                             <label for="year">Year:</label>
                             <input type="number" name="year" class="form-control" placeholder="Enter year" id="year">
@@ -123,6 +150,11 @@ $name = $_GET['name'];
                 console.log(data);
                 //take the data and display title && body && use name for header
                 document.getElementById("categoryId").value = data.id;
+                document.getElementById("categoryId2").value = data.id;
+                document.getElementById("catTitle").innerHTML = data.Title;
+                document.getElementById("titleEdit").value= data.Title;
+                document.getElementById("bodyEdit").value= data.Body;
+                document.getElementById("catBody").innerHTML = data.Body;
             });
     }
 
@@ -149,6 +181,15 @@ $name = $_GET['name'];
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.error) {
+                    document.getElementById("errorTxt").innerHTML = data.error;
+                    document.getElementById("succTxt").innerHTML = "";
+                }
+                else {
+                    document.getElementById("errorTxt").innerHTML = "";
+                    document.getElementById("succTxt").innerHTML = "Updated";
+                    window.location.replace("/front-end/categoryPage.php?name=<?php echo $name ?>");
+                }
             });
     }
 
@@ -167,6 +208,15 @@ $name = $_GET['name'];
                     window.location.replace("./front-end");
                 }
             });
+    }
+
+    const editOn = () => {
+        document.getElementById("editOn").classList.remove("d-none");
+        document.getElementById("editOff").classList.add("d-none");
+    }
+    const editOff = () => {
+        document.getElementById("editOff").classList.remove("d-none");
+        document.getElementById("editOn").classList.add("d-none");
     }
 
     const createMedia = () => {

@@ -8,7 +8,7 @@ $dbConn = ConnGet();
 function updateCategoryPage($dbConn, $id, $title, $body) {
     $queryUpdate = "UPDATE CategoryPage
                     SET ";
-    $queryWhere=  " WHERE media_id=".$id;
+    $queryWhere=  " WHERE category_id =".$id;
     $queryUpdate .= ($title != null) ? "title =\"".$title."\", " : "";
     $queryUpdate .= ($body != null) ? "body=\"".$body."\", " : "";
     $queryUpdate = substr($queryUpdate, 0, strripos($queryUpdate, ","));
@@ -27,7 +27,7 @@ if(isset($_POST["id"]) && $_POST["id"]) {
                 echo json_encode(json_decode('{"error": "'.$result.'"}'));
             }
             else {
-                echo "{}";
+                echo true;
             }
         }
         else {
