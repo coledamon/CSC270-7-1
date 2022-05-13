@@ -57,14 +57,14 @@ function createMediaPage($dbConn, $media_id, $title, $heading, $body) {
     return $result? $result : @mysqli_error($dbConn);
 }
 
-if(isset($_POST["name"]) && isset($_POST["authorId"]) && isset($_POST["categoryId"])) {
+if(isset($_POST["name"]) && isset($_POST["categoryId"])) {
     if(is_numeric($_POST["categoryId"])) {
         $category_id = (int)sanitizeInput($_POST["categoryId"]);
         $name = sanitizeInput($_POST["name"]);
-        $year = isset($_POST["year"]) ? sanitizeInput($_POST["year"]) : null;
-        $creator = isset($_POST["creator"]) ? sanitizeInput($_POST["creator"]) : null;
-        $genre = isset($_POST["genre"]) ? sanitizeInput($_POST["genre"]) : null;
-        $link = isset($_POST["link"]) ? sanitizeInput($_POST["link"]) : null;
+        $year = isset($_POST["year"]) && $_POST["year"] ? sanitizeInput($_POST["year"]) : null;
+        $creator = isset($_POST["creator"])&& $_POST["creator"] ? sanitizeInput($_POST["creator"]) : null;
+        $genre = isset($_POST["genre"])&& $_POST["genre"] ? sanitizeInput($_POST["genre"]) : null;
+        $link = isset($_POST["link"])&& $_POST["link"] ? sanitizeInput($_POST["link"]) : null;
 
         $result = createMedia($dbConn, $name, $year, $creator, $genre, $link, $category_id);
         if($result != 1) {
@@ -74,13 +74,16 @@ if(isset($_POST["name"]) && isset($_POST["authorId"]) && isset($_POST["categoryI
             $title = isset($_POST["title"]) ? sanitizeInput($_POST["title"]) : null;
             $heading = isset($_POST["heading"]) ? sanitizeInput($_POST["heading"]) : null;
             $body = isset($_POST["body"]) ? sanitizeInput($_POST["body"]) : null;
-            $media_id = @mysqli_query($dbConn, "SELECT LAST_INSERT_ID();");
-            $result = createMediaPage($dbConn, $media_id, $title, $heading, $body);
-            if($result != 1) {
-                echo json_encode(json_decode('{"error": "'.$result.'"}'));
+            $a=@mysqli_query($dbConn, "SELECT JSON_OBJECT('id',LAST_INSERT_ID());");
+            $b=@mysqli_fetch_all($a)[0];
+            $media_id = json_decode($b[0])->id;
+            echo $media_id;
+            $result2 = createMediaPage($dbConn, $media_id, $title, $heading, $body);
+            if($result2 != 1) {
+                echo json_encode(json_decode('{"error": "'.$result2.'"}'));
             }
             else {
-                echo "{}";
+                echo true;
             }
         }
         connClose($dbConn);

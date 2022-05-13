@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="reset.css"> -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <?php include "header.php" ?>
+<?php include "header.php" ?>
     <title>Media Library</title>
 </head>
 <?php include 'nav.php' ?>
 
 <body>
-    <?php if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
-        echo "This is how the program knows if a user is logged in or not";
-    }
-    ?>
-    <h2 class="title text-center">Categories</h2>
-
-    <br>
-    <div class="d-flex flex-column justify-content-center">
-        <div class="row justify-content-center ">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Create +</button>
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <h2 class="text-center">Categories</h2>
         </div>
-        <br>
-        <div id="wrapper" class="row justify-content-center"></div>
+        <?php if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
+                  echo '
+                        <div class="row justify-content-end">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add +</button>
+                            </div>
+                        </div>
+                        ';
+              }
+        ?>
+        <div id="wrapper" class="row justify-content-center my-2"></div>
     </div>
     <!-- <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-success create-btn" data-toggle="modal" data-target="#myModal">Create +</button>
@@ -34,42 +26,44 @@
     </div> -->
 
     <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <form id="createCategoryPageForm" method="POST" action="/" onsubmit="createCategoryPage(); return false;">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalLabel">Add Category</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Category</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="createMediaForm" method="POST" action="./categoryPage.php?name=<?php echo $name ?>">
+                    <!-- Modal body -->
+                    <div class="modal-body">
                         <div class="form-group">
-                            <label for="category">Category:</label>
-                            <input type="category" class="form-control" placeholder="Enter category" id="category">
+                            <label for="catSelect" class="form-control-label">Category:</label>
+                            <select id="catSelect" name="categoryId" class="form-control">
+                                
+                            </select>
+                            <span class="text-danger mb-1" id="errorTxt"></span>
+                            <span class="text-success mb-1" id="succTxt"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="createMedia()">Submit</button>
-                    </form>
-                </div>
+                    </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
-    </div>
+    </form>
 
-
-</body>
-
-</html>
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 <script>
     // const categoryName = document.getElementById('categoryName');
@@ -84,6 +78,16 @@
                 //     console.log(category);
                 // });
             });
+        fetch("../back-end/category/getCategoriesByUse.php?use=false")
+            .then(res => res.json())
+            .then(data => {
+                const catSelect = document.getElementById("catSelect")
+                data.forEach(category => {
+                    catSelect.innerHTML += `
+                                            <option value=${category.id}>${category.Name}</option>
+                                           `;
+                });
+            });
     }
 
     const createCategoryPage = () => {
@@ -97,14 +101,15 @@
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-            });
-    }
-
-    const stopUseCategory = (id) => {
-        fetch(`../back-end/category/stopUseCategory.php?id=${id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
+                if (data.error) {
+                    document.getElementById("errorTxt").innerHTML = data.error;
+                    document.getElementById("succTxt").innerHTML = "";
+                }
+                else {
+                    document.getElementById("errorTxt").innerHTML = "";
+                    document.getElementById("succTxt").innerHTML = "Media Created";
+                    window.location.replace("./front-end");
+                }
             });
     }
 
@@ -112,30 +117,18 @@
 
     const displayCategories = (categories) => {
         const wrapper = document.getElementById('wrapper');
-        categories.forEach(category => {
-            const categoryDiv = createCategory(category.Name);
-            wrapper.append(categoryDiv);
-        })
+        if (categories[0].error) {
+            wrapper.innerHTML += `<h4>No Categories In Use</h4>`;
+        }
+        else {
+            categories.forEach(category => {
+                wrapper.innerHTML += `
+                                    <a class="category-btn btn-color-<?php echo $_SESSION["style"] ?> btn-border-<?php echo $_SESSION["style"] ?> col-md-3 mx-4 mb-2 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
+                                        <h3 class="m-1">${category.Name}</h3>
+                                    </a>`;
+            })
+        }
     }
 
-    const createCategory = (categoryName) => {
-        const clickCategory = document.createElement('a');
-        clickCategory.setAttribute('href', `categoryPage.php?name=${categoryName}`);
-        clickCategory.classList.add('category-btn');
-        clickCategory.classList.add('col-md-4.5');
-        clickCategory.classList.add('m-4');
-
-        const categoryDiv = document.createElement('div');
-        categoryDiv.setAttribute('id', categoryName);
-        // categoryDiv.classList.add('align-content-center');
-
-        const category = document.createElement('h3');
-        category.textContent = categoryName;
-        // categoryDiv.append(category);
-        clickCategory.append(category);
-        // console.log(h3.textContent + " create");
-
-
-        return clickCategory;
-    }
 </script>
+<?php include "footer.php" ?>

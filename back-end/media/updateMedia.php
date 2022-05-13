@@ -41,12 +41,9 @@ if(isset($_POST["id"]) && $_POST["id"]) {
             $genre = isset($_POST["genre"]) ? sanitizeInput($_POST["genre"]): null;
             $link= isset($_POST["link"]) ? sanitizeInput($_POST["link"]): null;
 
-            $result = updateMedia($dbConn, $id, $name, $creator, $year, $genre, $link);
+            $result = updateMedia($dbConn, $id, $name, $year, $creator, $genre, $link);
             if($result != 1) {
                 echo json_encode(json_decode('{"error": "'.$result.'"}'));
-            }
-            else {
-                echo "{}";
             }
             $updatedMedia = true;
         }
@@ -56,16 +53,19 @@ if(isset($_POST["id"]) && $_POST["id"]) {
             $heading = isset($_POST["heading"]) ? sanitizeInput($_POST["heading"]): null;
             $body= isset($_POST["body"]) ? sanitizeInput($_POST["body"]): null;
 
-            $result = updateMediaPage($dbConn, $id, $title, $heading, $body);
-            if($result != 1) {
+            $result2 = updateMediaPage($dbConn, $id, $title, $heading, $body);
+            if($result2 != 1) {
                 echo json_encode(json_decode('{"error": "'.$result.'"}'));
             }
-            else {
-                echo "{}";
+            else if ($result){
+                echo true;
             }
         }
         else if(!$updatedMedia) {
             echo json_encode(json_decode('{"error": "'.var_dump($_POST).'"}'));
+        }
+        else {
+            echo true;
         }
         connClose($dbConn);
     }
