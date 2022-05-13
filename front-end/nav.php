@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/front-end">Home</a>
+                <a class="nav-link" href="/front-end/">Home</a>
             </li>
             <?php
                 if(isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
