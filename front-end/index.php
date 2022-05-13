@@ -4,17 +4,20 @@
 <?php include 'nav.php' ?>
 
 <body>
-    <?php if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
-        echo "This is how the program knows if a user is logged in or not";
-    }
-    ?>
     <div class="container">
         <div class="row justify-content-center mt-4">
             <h2 class="text-center">Categories</h2>
         </div>
-        <div class="row justify-content-end">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add +</button>
-        </div>
+        <?php if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"]) {
+                  echo '
+                        <div class="row justify-content-end">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add +</button>
+                            </div>
+                        </div>
+                        ';
+              }
+        ?>
         <div id="wrapper" class="row justify-content-center my-2"></div>
     </div>
     <!-- <div class="d-flex justify-content-center">

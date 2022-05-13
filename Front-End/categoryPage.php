@@ -21,33 +21,30 @@ $name = $_GET['name'];
 <body>
     <?php include 'nav.php' ?>
 
-    <h2 class="title text-center">
-        <?php echo $name ?>
-    </h2>
-
-
-    <div class="d-flex flex-column justify-content-center">
-        <div class="row justify-content-center ">
-            <button type="button" class="btn btn-success create-btn" data-toggle="modal" data-target="#myModal">Create +</button>
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <h2 class="text-center"><?php echo $name ?></h2>
         </div>
-        <br>
-        <div id="wrapper" class="row justify-content-center"></div>
+        <div class="row justify-content-end">
+            <div class="col-auto">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add +</button>
+            </div>
+        </div>
+        <div id="wrapper" class="row justify-content-center my-2"></div>
     </div>
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <form id="createMediaForm" method="POST" action="/" onsubmit="createMedia(); return false;">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalLabel">Add <?php echo $name ?></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add <?php echo $name ?></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="createMediaForm" method="POST" action="/" onsubmit="createMedia(); return false;">
+                    <!-- Modal body -->
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Title:<span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" placeholder="Enter title" id="name" required>
@@ -71,18 +68,23 @@ $name = $_GET['name'];
                             <span class="text-danger mb-1" id="errorTxt"></span>
                             <span class="text-success mb-1" id="succTxt"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+                    </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
-    </div>
+    </form>
 <script>
     const getCategoryPage = async () => {
         await fetch(`../back-end/category/getCategoryByName.php?name=<?php echo $_GET["name"] ?>`)
