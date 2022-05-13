@@ -277,6 +277,7 @@ $name = $_GET['name'];
         mediaContentDiv.classList.add('p-4');
         mediaContentDiv.classList.add('br-5');
         mediaContentDiv.classList.add('media-content');
+        mediaContentDiv.classList.add('btn-mid-bg-<?php echo $_SESSION["style"] ?>')
 
         const mediaTitle = document.createElement('h4');
         mediaTitle.textContent = title;

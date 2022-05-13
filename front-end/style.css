@@ -33,7 +33,6 @@
 
 .media-content {
     border: 2px solid #000;
-    background-color: #3595bb;
     color: #000000;
     font-weight: 600;
 }
@@ -90,6 +89,18 @@
 .btn-border-3 { 
     border: 3px solid #000 !important;
     color: #faebd7 !important;
+}
+
+.btn-mid-bg-1 {
+    background-color: #E67864;
+    /*background-color: #F54914;*/
+}
+.btn-mid-bg-2 {
+    background-color: #3595bb;
+}
+.btn-mid-bg-3 {
+    background-color: #64D8CD;
+    /*background-color: #6DB08D;*/
 }
 
 .btn-color-1:hover {

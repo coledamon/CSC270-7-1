@@ -25,7 +25,7 @@ $id = $_GET['id'];
         }
         ?>
         <div id="editOff" class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <p id="medBody"></p>
             </div>
         </div>
@@ -142,11 +142,7 @@ $id = $_GET['id'];
 
                     document.getElementById("medTitle").innerHTML = data.Title;
 
-                    if (data.Heading === null) {
-                        document.getElementById("medHeading").innerHTML = data.Name;
-                    } else {
-                        document.getElementById("medHeading").innerHTML = data.Heading;
-                    }
+                    document.getElementById("medHeading").innerHTML = data.Heading ?? data.Name;
 
                     document.getElementById("medBody").innerHTML = data.Body;
 
