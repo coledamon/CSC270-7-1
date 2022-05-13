@@ -141,7 +141,13 @@
             document.getElementById("linkEdit").value = data.Link;
 
             document.getElementById("medTitle").innerHTML = data.Title;
-            document.getElementById("medHeading").innerHTML = data.Heading;
+
+            if (data.Heading === null) {
+                document.getElementById("medHeading").innerHTML = data.Name;
+            } else {
+                document.getElementById("medHeading").innerHTML = data.Heading;
+            }
+            
             document.getElementById("medBody").innerHTML = data.Body;
 
             document.getElementById("catName").innerHTML = data.Category;

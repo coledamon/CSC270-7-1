@@ -18,7 +18,7 @@
                         ';
               }
         ?>
-        <div id="wrapper" class="row justify-content-center my-2"></div>
+        <div id="wrapper" class="row justify-content-between m-4"></div>
     </div>
     <!-- <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-success create-btn" data-toggle="modal" data-target="#myModal">Create +</button>
