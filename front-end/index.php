@@ -38,14 +38,14 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                            <div class="form-group">
-                                <label for="catSelect" class="form-control-label">Category:</label>
-                                <select id="catSelect" name="categoryId" class="form-control">
+                        <div class="form-group">
+                            <label for="catSelect" class="form-control-label">Category:</label>
+                            <select id="catSelect" name="categoryId" class="form-control">
                                 
-                                </select>
-                                <span class="text-danger mb-1" id="errorTxt"></span>
-                                <span class="text-success mb-1" id="succTxt"></span>
-                            </div>
+                            </select>
+                            <span class="text-danger mb-1" id="errorTxt"></span>
+                            <span class="text-success mb-1" id="succTxt"></span>
+                        </div>
                     </div>
 
                     <!-- Modal footer -->
@@ -113,24 +113,21 @@
             });
     }
 
-    const stopUseCategory = (id) => {
-        fetch(`../back-end/category/stopUseCategory.php?id=${id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            });
-    }
-
     getCategoriesByUse();
 
     const displayCategories = (categories) => {
         const wrapper = document.getElementById('wrapper');
-        categories.forEach(category => {
-            wrapper.innerHTML += `
-                                <a class="category-btn btn-color-<?php echo $_SESSION["style"] ?> col-md-3 mx-4 mb-2 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
-                                    <h3 class="m-1">${category.Name}</h3>
-                                </a>`;
-        })
+        if (categories[0].error) {
+            wrapper.innerHTML += `<h4>No Categories In Use</h4>`;
+        }
+        else {
+            categories.forEach(category => {
+                wrapper.innerHTML += `
+                                    <a class="category-btn btn-color-<?php echo $_SESSION["style"] ?> btn-border-<?php echo $_SESSION["style"] ?> col-md-3 mx-4 mb-2 text-center" href="/front-end/categoryPage.php?name=${category.Name}">
+                                        <h3 class="m-1">${category.Name}</h3>
+                                    </a>`;
+            })
+        }
     }
 
 </script>
