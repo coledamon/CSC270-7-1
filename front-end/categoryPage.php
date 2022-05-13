@@ -50,7 +50,10 @@ $name = $_GET['name'];
                 </form>
             </div>
         </div>
-        <div id="wrapper" class="row justify-content-center my-2"></div>
+
+        <!-- Display Media -->
+        <div id="wrapper" class="row justify-content-between"></div>
+
     </div>
 
     <form id="createMediaForm" method="POST" action="/" onsubmit="createMedia(); return false;">
